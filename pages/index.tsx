@@ -24,14 +24,14 @@ const Home: NextPage = () => {
   const data: DataType[] = formData.data;
   const [formFieldsData, setFormFieldsData] = useState<FormType[]>([]);
   const [dataToSave, setDataToSave] = useState<DataType[]>([...data]);
-  const [completeData, setCompleteData] = useState<DataStructType>({ dateSaved: '', data: [] });
+  const [fileData, setFileData] = useState<DataStructType>({ dateSaved: '', data: [] });
   const [snackbarInitialStatus] = useState<SnackbarStatusType>({
     open: false,
     severity: '',
     message: ''
   });
   const [snackbarStatus, setSnackbarStatus] = useState<SnackbarStatusType>(snackbarInitialStatus);
-  const [saveData] = useSaveData(completeData)
+  const [saveData] = useSaveData(fileData)
 
   useEffect(() => {
     const fData: FormType[] = [];
@@ -50,7 +50,7 @@ const Home: NextPage = () => {
   }, [fields, data])
 
   useEffect(() => {
-    if (completeData.data.length > 0) {
+    if (fileData.data.length > 0) {
       let newSnackbarStatus: SnackbarStatusType = {
         open: true,
         severity: 'error',
@@ -67,10 +67,10 @@ const Home: NextPage = () => {
         newSnackbarStatus.message = 'Error: ' + err;
       }).finally(() => {
         setSnackbarStatus({ ...newSnackbarStatus });
-        setCompleteData({ dateSaved: '', data: [] });
+        setFileData({ dateSaved: '', data: [] });
       });
     }
-  }, [completeData, saveData, snackbarInitialStatus])
+  }, [fileData, saveData, snackbarInitialStatus])
 
   const inputCb = (fieldId: number, value: string | number | null) => {
     const toSave = [...dataToSave];
@@ -87,7 +87,7 @@ const Home: NextPage = () => {
       dateSaved: format(new Date(), 'MM/dd/yyyy'),
       data: dataToSave
     }
-    setCompleteData({ ...fileContents })
+    setFileData({ ...fileContents })
   };
 
   return (
