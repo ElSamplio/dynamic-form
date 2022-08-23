@@ -1,0 +1,49 @@
+{
+    "id": 1,
+    "formName": "Code Assessment",
+    "fields": [
+        {
+            "id": 101,
+            "name": "Product Name",
+            "type": "text"
+        },
+        {
+            "id": 102,
+            "name": "Procedure",
+            "type": "text"
+        },
+        {
+            "id": 103,
+            "name": "Creation Date",
+            "type": "date"
+        },
+        {
+            "id": 104,
+            "name": "units produced",
+            "type": "number"
+        },
+        {
+            "id": 105,
+            "name": "location",
+            "type": "select",
+            "options": [
+                {
+                    "name": "Boston",
+                    "value": 1
+                },
+                {
+                    "name": "Houston",
+                    "value": 2
+                },
+                {
+                    "name": "New York",
+                    "value": 3
+                },
+                {
+                    "name": "Barcelona",
+                    "value": 4
+                }
+            ]
+        }
+    ]
+}
