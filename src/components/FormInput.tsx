@@ -29,6 +29,14 @@ const FormInput: React.FC<FormInputProps> = (formInputProps: FormInputProps) => 
         if (newValue !== null && typeof newValue === 'object') {
             valueToSave = format(newValue, 'MM/dd/yyyy')
         }
+        if (newValue != null && formInputProps.formInputType === 'number') {
+            const valueString = newValue.toString();
+            const matches = valueString.match(/^\d+$/);
+            if (!matches) {
+                return
+            }
+            valueToSave = Number(valueString);
+        }
         setInputValue(newValue);
         formInputProps.onChangeCb(formInputProps.formInputId, valueToSave)
     }

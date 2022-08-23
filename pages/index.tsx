@@ -25,11 +25,11 @@ const Home: NextPage = () => {
   const [formFieldsData, setFormFieldsData] = useState<FormType[]>([]);
   const [dataToSave, setDataToSave] = useState<DataType[]>([...data]);
   const [completeData, setCompleteData] = useState<DataStructType>({ dateSaved: '', data: [] });
-  const snackbarInitialStatus: SnackbarStatusType = {
+  const [snackbarInitialStatus] = useState<SnackbarStatusType>({
     open: false,
     severity: '',
     message: ''
-  }
+  });
   const [snackbarStatus, setSnackbarStatus] = useState<SnackbarStatusType>(snackbarInitialStatus);
   const [saveData] = useSaveData(completeData)
 
@@ -65,7 +65,7 @@ const Home: NextPage = () => {
         }
       }).catch(err => {
         newSnackbarStatus.message = 'Error: ' + err;
-      }).finally(() => { 
+      }).finally(() => {
         setSnackbarStatus({ ...newSnackbarStatus });
         setCompleteData({ dateSaved: '', data: [] });
       });
